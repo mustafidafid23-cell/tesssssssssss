@@ -78,10 +78,7 @@ def buat_tim(username_aktif):
     except ValueError as e:
         print(e)
     else:
-        id_terpakai = {data_tim["id"] for data_tim in team}
-        id_team_baru = random.randint(1,100000) 
-        while id_team_baru in id_terpakai:
-            id_team_baru = random.randint(1,100000)
+        id_team_baru = buat_id_acak(team)
         team.append({
             "id": id_team_baru,
             "username": username_aktif,
@@ -281,7 +278,7 @@ def buat_build(username_aktif):
         jeda(enter_kembali_rapat)
         return
 
-    id_build_baru = tim_dipilih["id"] + 1
+    id_build_baru = buat_id_acak(build)
     build.append({
         "id": id_build_baru,
         "username": username_aktif,

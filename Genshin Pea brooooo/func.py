@@ -1,4 +1,5 @@
 import os
+import random
 from datetime import datetime
 from prettytable import PrettyTable, ALL
 import data
@@ -9,7 +10,6 @@ clear_cmd = "cls" if os.name == "nt" else "clear"
 garis_40 = "=" * 40
 garis_45 = "=" * 45
 garis_55 = "=" * 55
-strip_30 = "-" * 30
 strip_40 = "-" * 40
 strip_45 = "-" * 45
 strip_55 = "-" * 55
@@ -62,7 +62,7 @@ def format_ribuan(angka):
     # Recursive case
     return format_ribuan(angka // 1000) + "." + str(angka % 1000).zfill(3)
 
-def cari_nama_rekursif(daftar_nama, nama, indeks=0):
+def cari_nama(daftar_nama, nama, indeks=0):
     # Base case 1: sudah sampai akhir list
     if indeks >= len(daftar_nama):
         return None
@@ -70,12 +70,12 @@ def cari_nama_rekursif(daftar_nama, nama, indeks=0):
     if daftar_nama[indeks].lower() == nama.lower():
         return daftar_nama[indeks]
     # Recursive case
-    return cari_nama_rekursif(daftar_nama, nama, indeks + 1)
+    return cari_nama(daftar_nama, nama, indeks + 1)
 
 # FUNGSI DENGAN PARAMETER
 def cari_karakter(nama):
     try:
-        return cari_nama_rekursif(list(genshin_characters), nama)
+        return cari_nama(list(genshin_characters), nama)
     except RecursionError:
         # Cadangan jika daftar karakter terlalu panjang untuk rekursi
         return next((item for item in genshin_characters if item.lower() == nama.lower()), None)
@@ -106,7 +106,7 @@ def tentukan_elemen(nama_valid):
     for pilihan_elemen in sorted(elemen):
         print("-", pilihan_elemen)
     elemen_pilihan = input("Pilih elemen Traveler: ").strip()
-    elemen_valid = cari_nama_rekursif(sorted(elemen), elemen_pilihan)
+    elemen_valid = cari_nama(sorted(elemen), elemen_pilihan)
     if elemen_valid is None:
         raise ValueError("Elemen Traveler tidak valid.")
     return elemen_valid
@@ -262,3 +262,11 @@ def tampilkan_pilihan_dummy():
 def daftar_id_nama(data):
     for id_item, data_item in data.items():
         print(id_item, "-", data_item["nama"])
+
+def buat_id_acak(daftar_data):
+    id_terpakai = {item["id"] for item in daftar_data}
+
+    while True:
+        id_baru = random.randint(100,999)
+        if id_baru not in id_terpakai:
+            return id_baru
