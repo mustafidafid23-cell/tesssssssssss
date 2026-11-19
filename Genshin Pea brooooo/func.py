@@ -54,7 +54,7 @@ def buat_tabel_dummy():
     tabel.hrules = ALL
     return tabel
 
-# FUNGSI REKURSIF 
+# FUNGSI REKURSIF
 def format_ribuan(angka):
     # Base case
     if angka < 1000:
@@ -205,12 +205,6 @@ def kumpulkan_build_karakter(tim_dipilih):
 def minta_pilihan():
     return input("Pilih menu: ").strip()
 
-def buat_id_tes():
-    global id_tes_berikutnya
-    id_sekarang = id_tes_berikutnya
-    id_tes_berikutnya += 1
-    return id_sekarang
-
 def hitung_total_karakter():
     return len(genshin_characters)
 
@@ -267,6 +261,6 @@ def buat_id_acak(daftar_data):
     id_terpakai = {item["id"] for item in daftar_data}
 
     while True:
-        id_baru = random.randint(100,999)
+        id_baru = random.randint(100,9999)
         if id_baru not in id_terpakai:
             return id_baru

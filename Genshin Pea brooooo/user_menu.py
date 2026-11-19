@@ -477,7 +477,7 @@ def catat_tes_baru(username_aktif):
         jeda(enter_kembali_rapat)
         return
     else:
-        id_tes_baru = buat_id_tes()
+        id_tes_baru = buat_id_acak()
         waktu_sekarang = waktu_tes()
         riwayat.append({
             "id": id_tes_baru,
