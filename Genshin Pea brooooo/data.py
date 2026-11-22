@@ -109,5 +109,4 @@ build = [
     }
 ]
 riwayat = []
-id_tes_berikutnya = 1
 elemen_karakter_valid = ("Anemo", "Geo", "Electro", "Dendro", "Hydro", "Pyro", "Cryo")
